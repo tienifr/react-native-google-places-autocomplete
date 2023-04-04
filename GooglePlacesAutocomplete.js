@@ -18,7 +18,6 @@ import {
   Platform,
   Pressable,
   ScrollView,
-  StyleSheet,
   Text,
   TextInput,
   View,
@@ -55,7 +54,7 @@ const defaultStyles = {
   },
   description: {},
   separator: {
-    height: StyleSheet.hairlineWidth,
+    height: 0.5,
     backgroundColor: '#c8c7cc',
   },
   poweredContainer: {
@@ -848,9 +847,9 @@ export const GooglePlacesAutocomplete = forwardRef((props, ref) => {
             placeholder={props.placeholder}
             onFocus={
               onFocus
-                ? (e) => {
+                ? () => {
                     _onFocus();
-                    onFocus(e);
+                    onFocus();
                   }
                 : _onFocus
             }
@@ -858,7 +857,7 @@ export const GooglePlacesAutocomplete = forwardRef((props, ref) => {
               onBlur
                 ? (e) => {
                     _onBlur(e);
-                    onBlur(e);
+                    onBlur();
                   }
                 : _onBlur
             }
@@ -869,7 +868,6 @@ export const GooglePlacesAutocomplete = forwardRef((props, ref) => {
           {_renderRightButton()}
         </View>
       )}
-      {props.inbetweenCompo}
       {_getFlatList()}
       {props.children}
     </View>
@@ -889,7 +887,6 @@ GooglePlacesAutocomplete.propTypes = {
   GooglePlacesDetailsQuery: PropTypes.object,
   GooglePlacesSearchQuery: PropTypes.object,
   GoogleReverseGeocodingQuery: PropTypes.object,
-  inbetweenCompo: PropTypes.object,
   isRowScrollable: PropTypes.bool,
   keyboardShouldPersistTaps: PropTypes.oneOf(['never', 'always', 'handled']),
   listEmptyComponent: PropTypes.func,
